@@ -4,7 +4,7 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProviderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,4 +26,8 @@ Route::controller(ProductController::class)->group(function(){
 
 Route::controller(ProviderController::class)->group(function(){
     Route::get('/providers', 'index');
+});
+
+Route::controller(UserController::class)->group(function(){
+    Route::get('/users', 'index');
 });
