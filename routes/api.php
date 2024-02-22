@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ServiceController;
+use App\Http\Controllers\Api\ProviderProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +55,5 @@ Route::get('/services/{id}', [ServiceController::class, 'show']);
 Route::put('/services/{id}', [ServiceController::class, 'update']);
 Route::delete('/services/{id}', [ServiceController::class, 'destroy']);
 });
+
+Route::apiResource('provider-product', ProviderProductController::class);
