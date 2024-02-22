@@ -31,7 +31,8 @@ Route::controller(ProviderController::class)->group(function(){
 });
 
 Route::controller(UserController::class)->group(function(){
-    Route::get('/users', 'index');
+    Route::get('/users', 'index'); 
+    Route::post('/users', [UserController::class, 'store']);  
 });
 
 Route::controller(ServiceController::class)->group(function(){

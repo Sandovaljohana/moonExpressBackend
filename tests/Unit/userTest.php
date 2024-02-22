@@ -6,12 +6,13 @@ use App\Models\User;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class UserTest extends TestCase
 
 {
-    use RefreshDatabase, WithoutMiddleware;
+    use RefreshDatabase, WithoutMiddleware, WithFaker;
 
     public function testGetAllUsersOk(): void
     {
@@ -27,5 +28,29 @@ class UserTest extends TestCase
 
         // Comprobamos que los datos de la respuesta contienen el producto que hemos creado
         $response->assertJsonFragment($user->toArray());
+    }
+
+    
+    public function testStore()
+    {
+        $userData = [
+            'name' => $this->faker->name,
+            'lastname' => $this->faker->lastName,
+            'email' => $this->faker->unique()->safeEmail,
+            'phoneNumber' => $this->faker->phoneNumber,
+        ];
+
+        $response = $this->post('/api/users', $userData);
+
+        $response->assertStatus(201)
+            ->assertJsonFragment($userData);
+    }
+
+    public function testShow()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->get('/api/users/' . $user->id);
+
     }
 }
