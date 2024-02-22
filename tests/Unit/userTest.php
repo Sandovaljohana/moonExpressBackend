@@ -78,6 +78,17 @@ public function testUpdate()
         ->assertJsonFragment($userData);
 }
 
+public function testDestroy()
+{
+    $user = User::factory()->create();
+
+    $response = $this->delete('/api/users/' . $user->id);
+
+    $response->assertStatus(204);
+
+    $this->assertDatabaseMissing('users', ['id' => $user->id]);
+}
+
 
 
 
