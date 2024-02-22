@@ -1,7 +1,4 @@
 <?php
-
-namespace Database\Seeders;
-
 use Illuminate\Database\Seeder;
 use App\Models\ProviderProduct;
 use App\Models\Provider;
@@ -16,7 +13,7 @@ class ProviderProductSeeder extends Seeder
 
         foreach ($providers as $provider) {
             foreach ($products as $product) {
-                ProviderProduct::factory()->create([
+                ProviderProduct::create([
                     'provider_id' => $provider->id,
                     'product_id' => $product->id,
                 ]);

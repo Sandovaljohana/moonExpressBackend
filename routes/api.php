@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ServiceController;
-use App\Http\Controllers\Api\ProviderProductController;
+use App\Http\Controllers\ProviderProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,4 +56,10 @@ Route::put('/services/{id}', [ServiceController::class, 'update']);
 Route::delete('/services/{id}', [ServiceController::class, 'destroy']);
 });
 
-Route::apiResource('provider-product', ProviderProductController::class);
+Route::controller(ProviderProductController::class)->group(function(){
+    Route::get('/providersProducts', 'index');
+    Route::post('/providersProducts', [ProviderProductController::class, 'store']);
+    Route::get('/providersProducts/{id}', [ProviderProductController::class, 'show']);
+    Route::put('/providersProducts/{id}', [ProviderProductController::class, 'update']);
+    Route::delete('/providersProducts/{id}', [ProviderProductController::class, 'destroy']);
+    });

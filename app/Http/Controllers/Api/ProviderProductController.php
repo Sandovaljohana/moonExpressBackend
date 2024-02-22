@@ -1,55 +1,57 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\ProviderProduct;
+use Illuminate\Http\Request;
 
 class ProviderProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return ProviderProduct::all();
+        try {
+            return ProviderProduct::all();
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        $providerProduct = ProviderProduct::create($request->all());
-        return response()->json($providerProduct, 201);
-    }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(ProviderProduct $providerProduct)
     {
-        return $providerProduct;
+        try {
+            return $providerProduct;
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
+    public function store(Request $request)
+    {
+        try {
+            $providerProduct = ProviderProduct::create($request->all());
+            return response()->json($providerProduct, 201);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, ProviderProduct $providerProduct)
     {
-        $providerProduct->update($request->all());
-        return response()->json($providerProduct, 200);
+        try {
+            $providerProduct->update($request->all());
+            return response()->json($providerProduct, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(ProviderProduct $providerProduct)
     {
-        $providerProduct->delete();
-        return response()->json(null, 204);
+        try {
+            $providerProduct->delete();
+            return response()->json(null, 204);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
-
 }

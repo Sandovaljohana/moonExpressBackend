@@ -11,23 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('provider_products', function (Blueprint $table) {
+        Schema::create('providers_products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('provider_id');
             $table->unsignedBigInteger('product_id');
-            $table->foreign('provider_id')->references('id')->on('providers')->onDelete('cascade');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         
-        });
-
-    }
-
+            $table->foreign('provider_id')->references('id')->on('providers');
+            $table->foreign('product_id')->references('id')->on('products');
+    });
+        }
+        
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('provider_products');
+        Schema::dropIfExists('providers_products');
     }
 };
