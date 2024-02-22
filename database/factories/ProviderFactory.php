@@ -21,7 +21,7 @@ class ProviderFactory extends Factory
         return [
             'name' => $this->faker->word,
             'products' => $this->faker->sentence,
-            'phoneNumber' => $this->faker->numerify('###-###-###'),
+            'phoneNumber' => $this->faker->numerify('#########'),
         ];
     }
 }

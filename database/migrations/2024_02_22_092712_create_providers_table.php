@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('products');
-            $table->integer('phoneNumber');
+            $table->string('phoneNumber');
             $table->timestamps();
         });
     }
