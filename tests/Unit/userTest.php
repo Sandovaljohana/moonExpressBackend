@@ -60,4 +60,25 @@ class UserTest extends TestCase
             'phoneNumber' => $user->phoneNumber,
         ]);
 }
+
+public function testUpdate()
+{
+    $user = User::factory()->create();
+
+    $userData = [
+        'name' => $this->faker->name,
+        'lastname' => $this->faker->lastName,
+        'email' => $this->faker->unique()->safeEmail,
+        'phoneNumber' => $this->faker->phoneNumber,
+    ];
+
+    $response = $this->put('/api/users/' . $user->id, $userData);
+
+    $response->assertStatus(200)
+        ->assertJsonFragment($userData);
+}
+
+
+
+
 }

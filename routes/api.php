@@ -34,6 +34,7 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/users', 'index'); 
     Route::post('/users', [UserController::class, 'store']); 
     Route::get('/users/{id}', [UserController::class, 'show']);  
+    Route::put('/users/{id}', [UserController::class, 'update']);
 });
 
 Route::controller(ServiceController::class)->group(function(){
