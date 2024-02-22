@@ -47,10 +47,17 @@ class UserTest extends TestCase
     }
 
     public function testShow()
-    {
-        $user = User::factory()->create();
+{
+    $user = User::factory()->create();
 
-        $response = $this->get('/api/users/' . $user->id);
+    $response = $this->get('/api/users/' . $user->id);
 
-    }
+    $response->assertStatus(200)
+        ->assertJsonFragment([
+            'name' => $user->name,
+            'lastname' => $user->lastname,
+            'email' => $user->email,
+            'phoneNumber' => $user->phoneNumber,
+        ]);
+}
 }
