@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\ProviderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::controller(ProductController::class)->group(function(){
     Route::get('/products', 'index');
+});
+
+Route::controller(ProviderController::class)->group(function(){
+    Route::get('/providers', 'index');
 });
