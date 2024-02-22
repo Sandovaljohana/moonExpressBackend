@@ -21,14 +21,6 @@ class ProductController extends Controller
         } catch (Exception $e) {
             return response()->json(['status' => 204, 'message' => $e->getMessage()], 204);
         }
-        /*
-        try {
-            $products = Product::all();
-            return [201, $products];
-
-        } catch (Exception $e){
-            return [204, $e -> getMessage()];
-        }*/
     }
 
 
