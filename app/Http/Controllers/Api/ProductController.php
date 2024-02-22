@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\TryCatch;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use App\Models\Product;
 use Exception;
 
@@ -27,23 +27,40 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+
+public function store(Request $request)
 {
     $request->validate([
         'name' => 'required',
         'description' => 'required',
         'price' => 'required|numeric',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
+
+    $image = $request->file('image');
+    $uploadedImageUrl = Cloudinary::upload($image->getRealPath())->getSecurePath();
 
     $product = new Product;
     $product->name = $request->name;
     $product->description = $request->description;
     $product->price = $request->price;
+    $product->image_url = $uploadedImageUrl;
     $product->save();
 
     return response()->json($product, 201);
 }
 
+public function uploadImage(Request $request)
+{
+    $request->validate([
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
+
+    $image = $request->file('image');
+    $uploadedImageUrl = Cloudinary::upload($image->getRealPath())->getSecurePath();
+
+    return response()->json(['url' => $uploadedImageUrl], 201);
+}
     /**
      * Display the specified resource.
      */
