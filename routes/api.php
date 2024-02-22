@@ -5,6 +5,8 @@ use App\Http\Controllers\Api\ProviderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\ServiceController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,4 +32,8 @@ Route::controller(ProviderController::class)->group(function(){
 
 Route::controller(UserController::class)->group(function(){
     Route::get('/users', 'index');
+});
+
+Route::controller(ServiceController::class)->group(function(){
+    Route::get('/services', 'index');
 });
