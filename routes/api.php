@@ -32,17 +32,25 @@ Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 });
 
 Route::controller(ProviderController::class)->group(function(){
-    Route::get('/providers', 'index');
+Route::get('/providers', 'index');
+Route::post('/providers', [ProviderController::class, 'store']);
+Route::get('/providers/{id}', [ProviderController::class, 'show']);
+Route::put('/providers/{id}', [ProviderController::class, 'update']);
+Route::delete('/providers/{id}', [ProviderController::class, 'destroy']);
 });
 
 Route::controller(UserController::class)->group(function(){
-    Route::get('/users', 'index'); 
-    Route::post('/users', [UserController::class, 'store']); 
-    Route::get('/users/{id}', [UserController::class, 'show']);  
-    Route::put('/users/{id}', [UserController::class, 'update']);
-    Route::delete('/users/{id}', [UserController::class, 'destroy']);
+Route::get('/users', 'index'); 
+Route::post('/users', [UserController::class, 'store']); 
+Route::get('/users/{id}', [UserController::class, 'show']);  
+Route::put('/users/{id}', [UserController::class, 'update']);
+Route::delete('/users/{id}', [UserController::class, 'destroy']);
 });
 
 Route::controller(ServiceController::class)->group(function(){
-    Route::get('/services', 'index');
+Route::get('/services', 'index');
+Route::post('/services', [ServiceController::class, 'store']);
+Route::get('/services/{id}', [ServiceController::class, 'show']);
+Route::put('/services/{id}', [ServiceController::class, 'update']);
+Route::delete('/services/{id}', [ServiceController::class, 'destroy']);
 });
