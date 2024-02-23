@@ -66,9 +66,4 @@ Puedes encontrar la documentación de la API en `http://localhost:8000/api/...`.
 
 Este proyecto está licenciado bajo la licencia MIT. Consulta el archivo LICENSE para obtener más detalles.
 
-## Autoras
-
-[Marta Parra](https://github.com/Macata47) 🎸
-<br>
-[Johana Sandoval](https://github.com/Sandovaljohana)💛
 
